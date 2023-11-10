@@ -5,10 +5,11 @@ import Navbar from './components/navbar/Navbar'
 import Register from './pages/Register/Register'
 import Home from './pages/home/Home'
 import Login from './pages/login/Login'
+import { AuthProvider } from './contexts/AuthContext'
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
         <Navbar />
 
@@ -23,7 +24,7 @@ function App() {
         
         <Footer />
       </BrowserRouter>
-    </>
+    </ AuthProvider>
   )
 }
 
