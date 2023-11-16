@@ -13,3 +13,8 @@ export const registerUsuario = async(url: string, data: Object, setData: Functio
   const response = await api.post(url, data)
   setData(response.data)
 }
+
+export const find = async (url: string, setData: Function, header: Object) => {
+  const resposta = await api.get(url, header)
+  setData(resposta.data)
+}

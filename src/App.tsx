@@ -6,6 +6,7 @@ import Register from './pages/Register/Register'
 import Home from './pages/home/Home'
 import Login from './pages/login/Login'
 import { AuthProvider } from './contexts/AuthContext'
+import TopicList from './components/topic/topicList/TopicList'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/cadastro" element={<Register />} />
+            <Route path="/temas" element={<TopicList />} />
           </Routes>
         </div>
         
