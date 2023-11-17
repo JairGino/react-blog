@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { RotatingLines } from 'react-loader-spinner'
 import { useNavigate } from 'react-router-dom'
 
-import { registerUsuario } from '../../services/Service'
+import { registerUser } from '../../services/Service'
 import User from '../../models/User'
 
 import './Register.css'
@@ -51,7 +51,7 @@ function Register() {
       setIsLoading(true)
 
       try {
-        await registerUsuario(`/users/signup`, user, setUser)
+        await registerUser(`/users/signup`, user, setUser)
         alert('Usuário cadastrado com sucesso')
 
       } catch (error) {
