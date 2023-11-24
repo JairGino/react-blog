@@ -6,6 +6,7 @@ import { registerUser } from '../../services/Service'
 import User from '../../models/User'
 
 import './Register.css'
+import { toastAlert } from '../../utils/toastAlert'
 
 function Register() {
 
@@ -52,13 +53,13 @@ function Register() {
 
       try {
         await registerUser(`/users/signup`, user, setUser)
-        alert('Usuário cadastrado com sucesso')
+        toastAlert('Usuário cadastrado com sucesso', "sucesso")
 
       } catch (error) {
-        alert('Erro ao cadastrar o Usuário')
+        toastAlert('Erro ao cadastrar o Usuário', "erro")
       }
     } else {
-      alert('Dados inconsistentes. Verifique as informações de cadastro.')
+      toastAlert('Dados inconsistentes!', "erro")
       setUser({ ...user, password: "" })
       setConfirmPassword("")
     }

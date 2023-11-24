@@ -13,10 +13,13 @@ import PostList from './components/post/postList/PostList'
 import PostForm from './components/post/postForm/PostForm'
 import DeletePost from './components/post/deletePost/DeletePost'
 import Profile from './pages/profile/Profile'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
     <AuthProvider>
+      <ToastContainer />
       <BrowserRouter>
         <Navbar />
 

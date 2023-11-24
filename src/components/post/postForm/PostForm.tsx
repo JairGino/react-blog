@@ -5,6 +5,7 @@ import Post from "../../../models/Post";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { find, register, update } from "../../../services/Service";
 import { RotatingLines } from "react-loader-spinner";
+import { toastAlert } from "../../../utils/toastAlert";
 
 function PostForm() {
 
@@ -47,7 +48,7 @@ function PostForm() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado');
+      toastAlert('Você precisa estar logado', "info");
       navigate('/');
     }
   }, [token])
@@ -88,14 +89,14 @@ function PostForm() {
           },
         });
 
-        alert('Postagem atualizada com sucesso')
+        toastAlert('Postagem atualizada com sucesso', "sucesso")
 
       } catch (error: any) {
         if (error.toString().includes('403')) {
-          alert('O token expirou, favor logar novamente')
+          toastAlert('O token expirou, favor logar novamente', "info")
           handleLogout()
         } else {
-          alert('Erro ao atualizar a Postagem')
+          toastAlert('Erro ao atualizar a Postagem', "erro")
         }
       }
 
@@ -107,14 +108,14 @@ function PostForm() {
           },
         })
 
-        alert('Postagem cadastrada com sucesso');
+        toastAlert('Postagem cadastrada com sucesso', "sucesso");
 
       } catch (error: any) {
         if (error.toString().includes('403')) {
-          alert('O token expirou, favor logar novamente')
+          toastAlert('O token expirou, favor logar novamente', "info")
           handleLogout()
         } else {
-          alert('Erro ao cadastrar a Postagem');
+          toastAlert('Erro ao cadastrar a Postagem', "erro");
         }
       }
     }

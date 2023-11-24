@@ -5,6 +5,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import Post from "../../../models/Post";
 import { find } from "../../../services/Service";
 import PostCard from "../postCard/PostCard";
+import { toastAlert } from "../../../utils/toastAlert";
 
 function PostList() {
 
@@ -24,7 +25,7 @@ function PostList() {
       })
     } catch (error: any) {
       if (error.toString().includes('403')) {
-        alert('O token expirou , favor logar novamente')
+        toastAlert('O token expirou , favor logar novamente', "info")
         handleLogout()
       }
     }
@@ -32,7 +33,7 @@ function PostList() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado')
+      toastAlert('Você precisa estar logado', "sucesso")
       navigate('/');
     }
   }, [token])

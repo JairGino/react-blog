@@ -4,6 +4,7 @@ import Post from "../../../models/Post"
 import { AuthContext } from "../../../contexts/AuthContext"
 import { deleteItem, find } from "../../../services/Service"
 import { RotatingLines } from "react-loader-spinner"
+import { toastAlert } from "../../../utils/toastAlert"
 
 function DeletePost() {
 
@@ -26,7 +27,7 @@ function DeletePost() {
       })
     } catch (error: any) {
       if (error.toString().includes('403')) {
-        alert('O token expirou, favor logar novamente')
+        toastAlert('O token expirou, favor logar novamente', "info")
         handleLogout()
       }
     }
@@ -34,7 +35,7 @@ function DeletePost() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado')
+      toastAlert('Você precisa estar logado', "info")
       navigate('/login')
     }
   }, [token])
@@ -55,10 +56,10 @@ function DeletePost() {
         }
       })
 
-      alert('Postagem apagada com sucesso')
+      toastAlert('Postagem apagada com sucesso', "sucesso")
 
     } catch (error) {
-      alert('Erro ao apagar a Postagem')
+      toastAlert('Erro ao apagar a Postagem', "erro")
       console.log(error)
       console.log(post)
       console.log(id)

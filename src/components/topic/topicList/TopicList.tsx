@@ -5,6 +5,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import Topic from "../../../models/Topic";
 import { find } from "../../../services/Service";
 import TopicCard from "../topicCard/TopicCard";
+import { toastAlert } from "../../../utils/toastAlert";
 
 function TopicList() {
 
@@ -22,7 +23,7 @@ function TopicList() {
       })
     } catch (error: any) {
       if (error. toString().includes('403')) {
-        alert ('O token expirou, favor logar novamente')
+        toastAlert ('O token expirou, favor logar novamente', "info")
         handleLogout()
       }
     }
@@ -30,7 +31,7 @@ function TopicList() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado')
+      toastAlert('Você precisa estar logado', "info")
       navigate('/login')
     }
   }, [token])

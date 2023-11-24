@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import Topic from "../../../models/Topic";
 import { find, register, update } from "../../../services/Service";
+import { toastAlert } from "../../../utils/toastAlert";
 
 function TopicForm() {
 
@@ -26,7 +27,7 @@ function TopicForm() {
       })
     } catch (error: any) {
       if (error.toString().includes('403')) {
-        alert('O token expirou, favor logar novamente')
+        toastAlert('O token expirou, favor logar novamente', "info")
         handleLogout()
       }
     }
@@ -34,7 +35,7 @@ function TopicForm() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado');
+      toastAlert('Você precisa estar logado', "info");
       navigate('/login');
     }
   }, [token]);
@@ -64,14 +65,14 @@ function TopicForm() {
           }
         })
 
-        alert('Tema atualizado com sucesso')
+        toastAlert('Tema atualizado com sucesso', "sucesso")
 
       } catch (error: any) {
         if (error.toString().includes('403')) {
-          alert('O token expirou, favor logar novamente')
+          toastAlert('O token expirou, favor logar novamente', "info")
           handleLogout()
         } else {
-          alert('Erro ao atualizar o Tema')
+          toastAlert('Erro ao atualizar o Tema', "erro")
         }
       }
 
@@ -83,14 +84,14 @@ function TopicForm() {
           }
         })
 
-        alert('Tema cadastrado com sucesso')
+        toastAlert('Tema cadastrado com sucesso', "sucesso")
 
       } catch (error: any) {
         if (error.toString().includes('403')) {
-          alert('O token expirou, favor logar novamente')
+          toastAlert('O token expirou, favor logar novamente', "info")
           handleLogout()
         } else {
-          alert('Erro ao cadastrar o Tema')
+          toastAlert('Erro ao cadastrar o Tema', "erro")
         }
       }
     }
